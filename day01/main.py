@@ -10,7 +10,7 @@ def find_first_duplicate_frequency(changes):
         nums_visited.add(frequency)
 
 
-def test_find_first_frequency():
+def find_first_duplicate_frequency():
     assert find_first_duplicate_frequency([1, -1]) == 0
     assert find_first_duplicate_frequency([3, 3, 4, -2, -4]) == 10
     assert find_first_duplicate_frequency([-6, 3, 8, 5, -6]) == 5
