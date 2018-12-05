@@ -18,9 +18,7 @@ def count_units(polymer):
 
 
 def is_reactive(c1, c2):
-    return (
-        (c1.islower() and c2.isupper()) or (c1.isupper() and c2.islower())
-    ) and c1.lower() == c2.lower()
+    return c1.swapcase() == c2
 
 
 if __name__ == "__main__":
