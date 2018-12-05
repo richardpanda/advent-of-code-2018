@@ -7,13 +7,14 @@ def compute_shortest_length_polymer(polymer):
 
 
 def count_units(polymer):
-    stack, is_destroyed = [], [False] * len(polymer)
+    num_units, stack = len(polymer), []
     for i in range(len(polymer)):
         if stack and is_reactive(polymer[i], polymer[stack[-1]]):
-            is_destroyed[i] = is_destroyed[stack.pop()] = True
+            num_units -= 2
+            stack.pop()
         else:
             stack.append(i)
-    return len(polymer) - sum(is_destroyed)
+    return num_units
 
 
 def is_reactive(c1, c2):
