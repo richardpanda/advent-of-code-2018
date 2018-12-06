@@ -6,16 +6,18 @@ def calculate_largest_area(coordinates):
         max(row for _, row in coordinates) + 1,
         max(col for col, _ in coordinates) + 1,
     )
-    idx_to_area = defaultdict(int)
-    infinite_idxs = set()
+    idx_to_area, infinite_idxs = defaultdict(int), set()
     for row in range(num_rows):
         for col in range(num_cols):
-            dists = [
+            distances = [
                 (abs(row - r) + abs(col - c), idx)
                 for idx, (c, r) in enumerate(coordinates)
             ]
-            min_dist, idx = min(dists)
-            if sum(dist == min_dist for dist, _ in dists) == 1:
+            shortest_distance, idx = min(distances)
+            num_shortest_distances = sum(
+                distance == shortest_distance for distance, _ in distances
+            )
+            if num_shortest_distances == 1:
                 idx_to_area[idx] += 1
                 if row in (0, num_rows - 1) or col in (0, num_cols - 1):
                     infinite_idxs.add(idx)
