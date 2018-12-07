@@ -5,10 +5,10 @@ from collections import defaultdict
 def compute_step_order(steps):
     step_to_next_steps = defaultdict(list)
     steps_to_num_requirements = defaultdict(int)
-    for step in steps:
-        _, u, *_, v, _, _ = step.split(" ")
-        step_to_next_steps[u].append(v)
-        steps_to_num_requirements[v] += 1
+    for curr_step in steps:
+        _, step, *_, next_step, _, _ = curr_step.split(" ")
+        step_to_next_steps[step].append(next_step)
+        steps_to_num_requirements[next_step] += 1
     available_steps = [
         step for step in step_to_next_steps if steps_to_num_requirements[step] == 0
     ]
