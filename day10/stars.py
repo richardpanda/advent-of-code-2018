@@ -41,6 +41,6 @@ if __name__ == "__main__":
         stars = Stars(list(f))
 
     secs = stars.compute_message_time()
-    print(secs)
     stars.print_at_secs(secs)
+    print(secs)
 
