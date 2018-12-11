@@ -16,10 +16,14 @@ class Stars:
         return max(star.x + (star.dx * secs) for star in self._stars)
 
     def compute_message_time(self):
-        secs = 0
-        while self._compute_max_x_at_secs(secs) > self._compute_max_x_at_secs(secs + 1):
-            secs += 1
-        return secs
+        lo, hi = 1, 100000
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if self._compute_max_x_at_secs(mid) > self._compute_max_x_at_secs(mid + 1):
+                lo = mid + 1
+            else:
+                hi = mid - 1
+        return lo + 1
 
     def print_at_secs(self, secs):
         positions = set(
